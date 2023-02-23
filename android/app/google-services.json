@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "489657803998",
+    "project_id": "cash-coach",
+    "storage_bucket": "cash-coach.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489657803998:android:2826ac99b670ec26b70e4f",
+        "android_client_info": {
+          "package_name": "com.example.finance_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489657803998-kk3pd1t6076am5kvrg7gt0hk3a83r3tv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKZDJzY8oOXk85uIUIBFYvMgZEW2yUtLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489657803998-kk3pd1t6076am5kvrg7gt0hk3a83r3tv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
