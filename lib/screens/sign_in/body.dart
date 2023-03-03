@@ -1,8 +1,17 @@
+import 'package:finance_app/screens/sign_in/SignUp.dart';
+import 'package:finance_app/screens/sign_in/googleVerify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:finance_app/components/default_button.dart';
 import 'package:finance_app/constraints.dart';
 import 'package:finance_app/size_config.dart';
+import 'package:finance_app/screens/sign_in/googleSignIn.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
+import 'package:finance_app/screens/sign_in/googleVerify.dart';
+import '../../flutterfire.dart';
+import '../../home_view.dart';
+import 'package:finance_app/screens/sign_in/forgotPassword.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
@@ -15,21 +24,26 @@ class Body extends StatelessWidget {
       child: Padding(
         padding:
             EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-        child: Column(
-          children: [
-            Text(
-              "Welcome Back",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: getProportionateScreenWidth(28),
-                  fontWeight: FontWeight.bold),
-            ),
-            Text(
-              "Sign in with your email and password \nor continue with social media",
-              textAlign: TextAlign.center,
-            ),
-            SignForm(),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                "Welcome Back",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: getProportionateScreenWidth(28),
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Sign in with your email and password",
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: getProportionateScreenHeight(40),
+              ),
+              SignForm(),
+            ],
+          ),
         ),
       ),
     ));
@@ -129,16 +143,116 @@ class _SignFormState extends State<SignForm> {
                       gapPadding: 10)),
             ),
             SizedBox(
-              height: getProportionateScreenHeight(20),
+              height: getProportionateScreenHeight(5),
             ),
             FormErrors(errors: errors),
-            DefaultButton(
-                text: "Login",
-                press: () {
-                  if (_formKey.currentState!.validate()) {
-                    _formKey.currentState?.save();
+            SizedBox(height: getProportionateScreenHeight(10)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return ForgotPassword();
+                    }));
+                  },
+                  child: Text(
+                    "Forgot Password?",
+                    style: TextStyle(
+                        color: kTextColor, fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: getProportionateScreenHeight(10)),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.all(10),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(28)),
+                    backgroundColor: kPrimaryColor),
+                onPressed: () async {
+                  bool shouldNavigate =
+                      await signIn(_emailField.text, _passwordField.text);
+                  if (shouldNavigate) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomeView(),
+                        ));
                   }
-                }),
+                },
+                child: Text(
+                  "Login",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            ),
+            SizedBox(height: getProportionateScreenHeight(10)),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 65),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Don't have an account? "),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return SignUpScreen();
+                          }));
+                        },
+                        child: Text(
+                          "Sign Up",
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            SizedBox(height: getProportionateScreenHeight(20)),
+            Divider(
+              color: Colors.grey, //color of divider
+              height: 5, //height spacing of divider
+              thickness: 3, //thickness of divier line
+              indent: 25, //spacing at the start of divider
+              endIndent: 25, //spacing at the end of divider
+            ),
+            SizedBox(height: getProportionateScreenHeight(20)),
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              child: ElevatedButton.icon(
+                icon: SvgPicture.asset("assets/icons/google.svg"),
+                style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.all(5),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(28)),
+                    backgroundColor: Colors.white),
+                onPressed: () async {
+                  final provider =
+                      Provider.of<GoogleSignInProvider>(context, listen: false);
+                  provider.googleLogin();
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => googleVerify()));
+                },
+                label: Text(
+                  "Sign in with Google",
+                  style: TextStyle(fontSize: 18, color: Colors.black),
+                ),
+              ),
+            ),
           ],
         ));
   }

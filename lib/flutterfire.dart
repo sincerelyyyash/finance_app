@@ -1,4 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'home_view.dart';
 
 Future<bool> signIn(String email, String password) async {
   try {
@@ -17,6 +20,7 @@ Future<bool> register(String email, String password) async {
   try {
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
+
     return true;
   } on FirebaseAuthException catch (e) {
     if (e.code == 'weak-password') {

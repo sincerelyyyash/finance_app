@@ -14,7 +14,20 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  int currentPage = 0;
+  late PageController _pageController;
+  int _currentPage = 0;
+  @override
+  void initState() {
+    _pageController = PageController(initialPage: 0);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   List<Map<String, String>> splashData = [
     {
       "text": "Take control of your money and your life!",
@@ -39,12 +52,12 @@ class _BodyState extends State<Body> {
             Expanded(
               flex: 3,
               child: PageView.builder(
-                  onPageChanged: (value) {
+                  controller: _pageController,
+                  onPageChanged: (index) {
                     setState(() {
-                      currentPage = value;
+                      _currentPage = index;
                     });
                   },
-                  itemCount: splashData.length,
                   itemBuilder: (BuildContext context, int index) =>
                       SplashContent(
                         image: '${splashData[index]["image"]}',
@@ -69,13 +82,29 @@ class _BodyState extends State<Body> {
                       Spacer(
                         flex: 3,
                       ),
-                      DefaultButton(
-                        text: "Continue",
-                        press: () {
-                          Navigator.pushNamed(context, SignInScreen.routeName);
-                        },
-                      ),
-                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: SizedBox(
+                          height: 60,
+                          width: MediaQuery.of(context).size.width,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _pageController.nextPage(
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.ease);
+                            },
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(28)),
+                                backgroundColor: kPrimaryColor),
+                            child: Text(
+                              "Next",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 )),
@@ -90,9 +119,9 @@ class _BodyState extends State<Body> {
         duration: kAnimationDuration,
         margin: EdgeInsets.only(right: 5),
         height: 6,
-        width: currentPage == index ? 20 : 6,
+        width: _currentPage == index ? 20 : 6,
         decoration: BoxDecoration(
-          color: currentPage == index ? kPrimaryColor : Color(0xFFD8D8D8),
+          color: _currentPage == index ? kPrimaryColor : Color(0xFFD8D8D8),
           borderRadius: BorderRadius.circular(3),
         ));
   }
