@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'home_view.dart';
 
+// Sign in Connection with Firebase.
 Future<bool> signIn(String email, String password) async {
   try {
     await FirebaseAuth.instance
@@ -16,6 +17,7 @@ Future<bool> signIn(String email, String password) async {
   }
 }
 
+// Register connection with Firebase.
 Future<bool> register(String email, String password) async {
   try {
     await FirebaseAuth.instance

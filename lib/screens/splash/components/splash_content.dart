@@ -11,6 +11,7 @@ class SplashContent extends StatelessWidget {
   }) : super(key: key);
   final String text, image;
 
+// Title of the app for Splash Screen
   @override
   Widget build(BuildContext context) {
     return Column(

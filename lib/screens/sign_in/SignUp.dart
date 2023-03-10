@@ -14,6 +14,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  // Text Controller for Email And Password.
   TextEditingController _emailField = TextEditingController();
   TextEditingController _passwordField = TextEditingController();
 
@@ -22,6 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
+          // Appbar Title for the page.
           title: Text(
             "Sign Up",
             style: TextStyle(color: Colors.white, fontSize: 20),
@@ -36,10 +38,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
             child: TextFormField(
+              // Keyboard type declaration for @ button on keyboard.
               keyboardType: TextInputType.emailAddress,
               style: TextStyle(color: Colors.white),
+              // Text Controller for email.
               controller: _emailField,
               decoration: InputDecoration(
+                  // Label on Email input Dialog Box
                   labelText: "Email",
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                   suffixIcon: Padding(
@@ -49,6 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         getProportionateScreenWidth(20),
                         getProportionateScreenWidth(20)),
                     child: SvgPicture.asset(
+                      // Suffix logo for mail.
                       "assets/icons/Mail.svg",
                       height: getProportionateScreenWidth(18),
                     ),

@@ -1,4 +1,4 @@
-# shop_app
+# Finance_app
 
 A new Flutter project.
 

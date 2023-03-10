@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Constant variables for Colors used.
 const kPrimaryColor = Color(0xFF624aa1);
 const kPrimaryLightColor = Color(0xFFFFECDF);
 const kPrimaryGradientColor = LinearGradient(

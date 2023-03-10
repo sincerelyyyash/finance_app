@@ -28,15 +28,19 @@ class _BodyState extends State<Body> {
     super.dispose();
   }
 
+// List of splash screen content (Photos & data)
   List<Map<String, String>> splashData = [
+    // Content of First Splash Screen.
     {
       "text": "Take control of your money and your life!",
       "image": "assets/images/splash_001.png",
     },
+    // Content of Second Splash Screen.
     {
       "text": "Track your expenses, achieve your goals.",
       "image": "assets/images/splash_002.png",
     },
+    // Content of Third Splash Screen.
     {
       "text": "Budgeting made easy.",
       "image": "assets/images/splash_003.png",
@@ -52,24 +56,28 @@ class _BodyState extends State<Body> {
             Expanded(
               flex: 3,
               child: PageView.builder(
+                  // page controller for Splash screen
                   controller: _pageController,
                   onPageChanged: (index) {
                     setState(() {
                       _currentPage = index;
                     });
                   },
+                  // Image and text of Splash Screen.
                   itemBuilder: (BuildContext context, int index) =>
                       SplashContent(
                         image: '${splashData[index]["image"]}',
                         text: '${splashData[index]['text']}',
                       )),
             ),
+            // Design
             Expanded(
                 flex: 2,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: getProportionateScreenWidth(20)),
                   child: Column(
+                    // Animated Dot widget on Splash Screen.
                     children: <Widget>[
                       Spacer(),
                       Row(
@@ -87,22 +95,51 @@ class _BodyState extends State<Body> {
                         child: SizedBox(
                           height: 60,
                           width: MediaQuery.of(context).size.width,
+                          // Next Button on splash screen for traversing through next splash screen.
+                          // if else condition for splash screen button to convert it into Login button on last
+                          // splash screen to get to Sign In Screen.
                           child: ElevatedButton(
-                            onPressed: () {
-                              _pageController.nextPage(
-                                  duration: Duration(milliseconds: 300),
-                                  curve: Curves.ease);
-                            },
-                            style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(28)),
-                                backgroundColor: kPrimaryColor),
-                            child: Text(
-                              "Next",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
-                            ),
-                          ),
+                              onPressed: () {
+                                if (_currentPage == 2) {
+                                  print('Enter');
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              SignInScreen()));
+                                } else {
+                                  _pageController.nextPage(
+                                      duration: Duration(milliseconds: 300),
+                                      curve: Curves.ease);
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(28)),
+                                  backgroundColor: kPrimaryColor),
+                              // Login button for last screen of splash screen.
+                              child: (_currentPage == 2)
+                                  ? Row(children: [
+                                      Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(12),
+                                          child: Text("Login",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18)),
+                                        ),
+                                      ),
+                                    ])
+                                  // Next button untill last Splash Screen.
+                                  : Center(
+                                      child: Text(
+                                        "Next",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )),
                         ),
                       )
                     ],
@@ -114,6 +151,7 @@ class _BodyState extends State<Body> {
     );
   }
 
+// Animated Dot of the Splash Screen.
   AnimatedContainer buildDot({int? index}) {
     return AnimatedContainer(
         duration: kAnimationDuration,
