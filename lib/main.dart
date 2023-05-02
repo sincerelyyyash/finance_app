@@ -1,3 +1,5 @@
+import 'package:finance_app/home_view.dart';
+import 'package:finance_app/screens/root_page.dart';
 import 'package:finance_app/screens/sign_in/googleSignIn.dart';
 import 'package:flutter/material.dart';
 import 'package:finance_app/constraints.dart';
@@ -8,20 +10,49 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+import 'firebase_options.dart';
 
-  runApp(const MyApp());
+void main() async {
+ WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    name: 'Finance-App',
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
 
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
- 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
 
-
+class _MyAppState extends State<MyApp> {
+  bool login = false;
+  checkLogin() {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        if (mounted) {
+          setState(() {
+            login = false;
+          });
+        }
+      } else {
+        if (mounted) {
+          setState(() {
+            login = true;
+          });
+        }
+      }
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    checkLogin();
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -32,7 +63,7 @@ class MyApp extends StatelessWidget {
         title: 'Mock Markets',
         theme: theme(),
         // home: SplashScreen(),
-        initialRoute: SplashScreen.routeName,
+        home:login? rootpage(): SplashScreen(),
         routes: routes,
       ),
     );

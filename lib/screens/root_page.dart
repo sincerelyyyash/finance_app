@@ -2,6 +2,7 @@ import 'package:finance_app/coinPages/second.dart';
 import 'package:finance_app/constraints.dart';
 import 'package:finance_app/home_view.dart';
 import 'package:finance_app/screens/profile.dart';
+import 'package:finance_app/screens/profilepage.dart';
 
 import 'package:finance_app/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class _rootpageState extends State<rootpage> {
     HomeView(),
     LearnPage(),
     ProfileScreen(),
+    ProfilePage()
   ];
 
   void onTabTapped(int index) {

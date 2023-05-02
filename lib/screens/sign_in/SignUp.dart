@@ -18,6 +18,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   // Text Controller for Email And Password.
   TextEditingController _emailField = TextEditingController();
   TextEditingController _passwordField = TextEditingController();
+  TextEditingController _nameField = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +37,46 @@ class _SignUpScreenState extends State<SignUpScreen> {
             'Please enter your details to register.',
             textAlign: TextAlign.center,
           ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+            child: TextFormField(
+              // Keyboard type declaration for @ button on keyboard.
+              keyboardType: TextInputType.name,
+              style: TextStyle(color: Colors.black),
+              // Text Controller for email.
+              controller: _nameField,
+              decoration: InputDecoration(
+                  // Label on Email input Dialog Box
+                  labelText: "Name",
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  suffixIcon: Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        0,
+                        getProportionateScreenWidth(20),
+                        getProportionateScreenWidth(20),
+                        getProportionateScreenWidth(20)),
+                    child: SvgPicture.asset(
+                      // Suffix logo for mail.
+                      "assets/icons/User.svg",
+                      height: getProportionateScreenWidth(18),
+                    ),
+                  ),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 42, vertical: 20),
+                  labelStyle: TextStyle(color: Colors.black),
+                  hintText: "Enter your Name",
+                  hintStyle: TextStyle(color: Colors.black),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(28),
+                      borderSide: BorderSide(color: kTextColor),
+                      gapPadding: 10),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(28),
+                      borderSide: BorderSide(color: kTextColor),
+                      gapPadding: 10)),
+            ),
+          ),
+          // SizedBox(height: getProportionateScreenHeight(20)),
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
             child: TextFormField(
@@ -124,7 +165,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     backgroundColor: kPrimaryColor),
                 onPressed: () async {
                   bool shouldNavigate =
-                      await register(_emailField.text, _passwordField.text);
+                      await register(_emailField.text, _passwordField.text,_nameField.text);
                   if (shouldNavigate) {
                     Navigator.push(
                         context,

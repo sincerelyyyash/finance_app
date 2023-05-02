@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "489657803998",
+    "firebase_url": "https://cash-coach-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "cash-coach",
     "storage_bucket": "cash-coach.appspot.com"
   },
@@ -14,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "489657803998-kk3pd1t6076am5kvrg7gt0hk3a83r3tv.apps.googleusercontent.com",
+          "client_id": "489657803998-q89m8dib5s5vj06jr45eckrlg4aoltuq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finance_app",
+            "certificate_hash": "b74a644ba81449561c8c88114994098269f55df8"
+          }
+        },
+        {
+          "client_id": "489657803998-0slmkpp17tcbe9ebt3n5ogfnf8mhsr6l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,8 +36,51 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "489657803998-kk3pd1t6076am5kvrg7gt0hk3a83r3tv.apps.googleusercontent.com",
+              "client_id": "489657803998-0slmkpp17tcbe9ebt3n5ogfnf8mhsr6l.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "489657803998-443jagag5h8a0nbd5hhjffvm6a1pu988.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.flutter.flutter.app"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489657803998:android:1608b2b618ab76d2b70e4f",
+        "android_client_info": {
+          "package_name": "com.example.financeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489657803998-0slmkpp17tcbe9ebt3n5ogfnf8mhsr6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKZDJzY8oOXk85uIUIBFYvMgZEW2yUtLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489657803998-0slmkpp17tcbe9ebt3n5ogfnf8mhsr6l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "489657803998-443jagag5h8a0nbd5hhjffvm6a1pu988.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.flutter.flutter.app"
+              }
             }
           ]
         }
