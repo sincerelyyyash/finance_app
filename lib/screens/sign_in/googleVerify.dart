@@ -1,5 +1,7 @@
 import 'package:finance_app/constraints.dart';
 import 'package:finance_app/home_view.dart';
+import 'package:finance_app/screens/profile.dart';
+import 'package:finance_app/screens/root_page.dart';
 import 'package:finance_app/screens/sign_in/SignInScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,7 +21,7 @@ class googleVerify extends StatelessWidget {
                       child: CircularProgressIndicator(color: kPrimaryColor)),
                 );
               } else if (snapshot.hasData) {
-                return HomeView();
+                return rootpage();
               } else if (snapshot.hasError) {
                 print('Something is wrong');
                 return SignInScreen();

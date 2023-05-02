@@ -11,11 +11,16 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+ 
+
 
   // This widget is the root of your application.
   @override
@@ -24,7 +29,7 @@ class MyApp extends StatelessWidget {
       create: ((context) => GoogleSignInProvider()),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'CashCoach',
+        title: 'Mock Markets',
         theme: theme(),
         // home: SplashScreen(),
         initialRoute: SplashScreen.routeName,

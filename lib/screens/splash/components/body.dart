@@ -4,7 +4,7 @@ import 'package:finance_app/screens/sign_in/SignInScreen.dart';
 import 'package:finance_app/screens/splash/components/splash_content.dart';
 import 'package:finance_app/size_config.dart';
 
-import '../../../components/default_button.dart';
+
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -32,18 +32,18 @@ class _BodyState extends State<Body> {
   List<Map<String, String>> splashData = [
     // Content of First Splash Screen.
     {
-      "text": "Take control of your money and your life!",
-      "image": "assets/images/splash_001.png",
+      "text": "LEARN BEFORE YOU START TO EARN!",
+      "image": "assets/images/Splashh01.png",
     },
     // Content of Second Splash Screen.
     {
-      "text": "Track your expenses, achieve your goals.",
-      "image": "assets/images/splash_002.png",
+      "text": "DON'T RISK REAL MONEY WHEN LEARNING.",
+      "image": "assets/images/Splashh02.png",
     },
     // Content of Third Splash Screen.
     {
-      "text": "Budgeting made easy.",
-      "image": "assets/images/splash_003.png",
+      "text": "TRADE, DON'T GAMBLE.",
+      "image": "assets/images/Splashh03.png",
     }
   ];
   @override
@@ -122,7 +122,8 @@ class _BodyState extends State<Body> {
                                   ? Row(children: [
                                       Center(
                                         child: Padding(
-                                          padding: const EdgeInsets.all(12),
+                                          padding: const EdgeInsets.fromLTRB(
+                                              110, 0, 40, 0),
                                           child: Text("Login",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(

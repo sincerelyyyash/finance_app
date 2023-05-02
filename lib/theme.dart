@@ -3,12 +3,12 @@ import 'package:finance_app/constraints.dart';
 
 ThemeData theme() {
   return ThemeData(
-    scaffoldBackgroundColor: Color(0xFF141414),
+    scaffoldBackgroundColor: Colors.white,
     fontFamily: "Muli",
     appBarTheme: AppBarTheme(
-        color: Color(0xFF141414),
+        color: Colors.white,
         elevation: 0,
-        iconTheme: IconThemeData(color: Colors.white)),
+        iconTheme: IconThemeData(color: Colors.black)),
     textTheme: TextTheme(
         bodyText1: TextStyle(color: kTextColor),
         bodyText2: TextStyle(color: kTextColor)),

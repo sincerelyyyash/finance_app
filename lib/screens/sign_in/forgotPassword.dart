@@ -50,7 +50,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         centerTitle: true,
         title: Text(
           "Forgot Password?",
-          style: TextStyle(color: Colors.white, fontSize: 20),
+          style: TextStyle(color: Colors.black, fontSize: 20),
         ),
       ),
       body: Column(
@@ -63,7 +63,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             padding: const EdgeInsets.all(20.0),
             child: TextFormField(
               keyboardType: TextInputType.emailAddress,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
               controller: _emailField,
               decoration: InputDecoration(
                   labelText: "Email",
@@ -81,9 +81,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 42, vertical: 20),
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: TextStyle(color: Colors.black),
                   hintText: "Enter your Email",
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(
+                    color: Colors.black,
+                  ),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(28),
                       borderSide: BorderSide(color: kTextColor),

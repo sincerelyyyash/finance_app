@@ -1,8 +1,11 @@
+import 'dart:ffi';
+
+import 'package:finance_app/screens/root_page.dart';
 import 'package:finance_app/screens/sign_in/SignUp.dart';
 import 'package:finance_app/screens/sign_in/googleVerify.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:finance_app/components/default_button.dart';
+
 import 'package:finance_app/constraints.dart';
 import 'package:finance_app/size_config.dart';
 import 'package:finance_app/screens/sign_in/googleSignIn.dart';
@@ -27,10 +30,13 @@ class Body extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(
+                height: 40,
+              ),
               Text(
                 "Welcome Back",
                 style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: getProportionateScreenWidth(28),
                     fontWeight: FontWeight.bold),
               ),
@@ -79,7 +85,7 @@ class _SignFormState extends State<SignForm> {
                 }
                 return null;
               },
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
               controller: _emailField,
               decoration: InputDecoration(
                   labelText: "Email",
@@ -97,9 +103,9 @@ class _SignFormState extends State<SignForm> {
                   ),
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 42, vertical: 20),
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: TextStyle(color: Colors.black),
                   hintText: "Enter your Email",
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.black),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(28),
                       borderSide: BorderSide(color: kTextColor),
@@ -112,7 +118,7 @@ class _SignFormState extends State<SignForm> {
             SizedBox(height: getProportionateScreenHeight(20)),
             TextFormField(
               obscureText: true,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
               controller: _passwordField,
               decoration: InputDecoration(
                   labelText: "Password",
@@ -130,9 +136,9 @@ class _SignFormState extends State<SignForm> {
                   ),
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 42, vertical: 20),
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: TextStyle(color: Colors.black),
                   hintText: "Enter your password",
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.black),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(28),
                       borderSide: BorderSide(color: kTextColor),
@@ -168,7 +174,7 @@ class _SignFormState extends State<SignForm> {
             SizedBox(height: getProportionateScreenHeight(10)),
             SizedBox(
               width: MediaQuery.of(context).size.width,
-              height: 50,
+              height: 60,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.all(10),
@@ -182,13 +188,13 @@ class _SignFormState extends State<SignForm> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomeView(),
+                          builder: (context) => rootpage(),
                         ));
                   }
                 },
                 child: Text(
                   "Login",
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 20),
                 ),
               ),
             ),
@@ -239,7 +245,7 @@ class _SignFormState extends State<SignForm> {
                     padding: EdgeInsets.all(5),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(28)),
-                    backgroundColor: Colors.white),
+                    backgroundColor: Colors.white.withOpacity(0.4)),
                 onPressed: () async {
                   final provider =
                       Provider.of<GoogleSignInProvider>(context, listen: false);

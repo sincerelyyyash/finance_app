@@ -13,7 +13,7 @@ class SignInScreen extends StatelessWidget {
         centerTitle: true,
         title: Text(
           "Sign In",
-          style: TextStyle(color: Colors.white, fontSize: 20),
+          style: TextStyle(color: Colors.black, fontSize: 20),
         ),
       ),
       body: Body(),

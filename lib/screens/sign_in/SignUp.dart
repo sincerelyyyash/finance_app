@@ -1,4 +1,5 @@
 import 'package:finance_app/flutterfire.dart';
+import 'package:finance_app/screens/root_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -26,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           // Appbar Title for the page.
           title: Text(
             "Sign Up",
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.black, fontSize: 20),
           ),
         ),
         body: Column(children: [
@@ -40,7 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: TextFormField(
               // Keyboard type declaration for @ button on keyboard.
               keyboardType: TextInputType.emailAddress,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
               // Text Controller for email.
               controller: _emailField,
               decoration: InputDecoration(
@@ -61,9 +62,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 42, vertical: 20),
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: TextStyle(color: Colors.black),
                   hintText: "Enter your Email",
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.black),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(28),
                       borderSide: BorderSide(color: kTextColor),
@@ -79,7 +80,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
             child: TextFormField(
               obscureText: true,
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.black),
               controller: _passwordField,
               decoration: InputDecoration(
                   labelText: "Password",
@@ -97,9 +98,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 42, vertical: 20),
-                  labelStyle: TextStyle(color: Colors.white),
+                  labelStyle: TextStyle(color: Colors.black),
                   hintText: "Enter your password",
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.black),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(28),
                       borderSide: BorderSide(color: kTextColor),
@@ -128,7 +129,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomeView(),
+                          builder: (context) => rootpage(),
                         ));
                   }
                 },
