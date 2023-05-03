@@ -49,6 +49,7 @@ dependencies:
   google_fonts: ^4.0.4
   auto_size_text: ^3.0.0
   font_awesome_flutter: ^10.4.0
+  draw_graph: ^1.0.0
 
 dev_dependencies:
   flutter_test:

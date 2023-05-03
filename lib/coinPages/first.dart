@@ -10,6 +10,10 @@ class FirstCoin extends StatefulWidget {
 class _FirstCoinState extends State<FirstCoin> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+        // body: Column(children: [
+
+        // ]),
+        );
   }
 }
