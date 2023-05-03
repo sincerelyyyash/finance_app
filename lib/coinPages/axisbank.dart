@@ -40,17 +40,21 @@ class _AXISSpageState extends State<AXISSpage> {
         body: SingleChildScrollView(
             child: Column(children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(15, 10, 250, 8),
-            child: Column(
+            padding: const EdgeInsets.only(top: 20, left: 20),
+            child: Row(
               children: [
-                Text(
-                  "AXIS BANK",
-                  style: TextStyle(color: Colors.black, fontSize: 26),
-                ),
-                Text(
-                  "AXBK",
-                  style: TextStyle(
-                      color: Colors.black.withOpacity(0.4), fontSize: 22),
+                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "AXIS BANK",
+                      style: TextStyle(color: Colors.black, fontSize: 26),
+                    ),
+                    Text(
+                      "AXBK",
+                      style: TextStyle(
+                          color: Colors.black.withOpacity(0.4), fontSize: 22),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -99,15 +103,17 @@ class _AXISSpageState extends State<AXISSpage> {
             child: Column(
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Text(
                       "Day's Range",
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 72,
-                    ),
+                    // SizedBox(
+                    //   width: 72,
+                    // ),
                     Text(
                       "$minP - $maxP",
                       style: TextStyle(
@@ -116,15 +122,17 @@ class _AXISSpageState extends State<AXISSpage> {
                   ],
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Text(
                       "52 week Range",
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 46,
-                    ),
+                    // SizedBox(
+                    //   width: 46,
+                    // ),
                     Text(
                       "618.25 - 970",
                       style: TextStyle(
@@ -133,15 +141,17 @@ class _AXISSpageState extends State<AXISSpage> {
                   ],
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Text(
                       "Market Cap",
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 80,
-                    ),
+                    // SizedBox(
+                    //   width: 80,
+                    // ),
                     Text(
                       "2.68 T",
                       style: TextStyle(
@@ -150,15 +160,17 @@ class _AXISSpageState extends State<AXISSpage> {
                   ],
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Text(
                       "Volume",
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 120,
-                    ),
+                    // SizedBox(
+                    //   width: 120,
+                    // ),
                     Text(
                       "12,946,819",
                       style: TextStyle(
@@ -167,15 +179,17 @@ class _AXISSpageState extends State<AXISSpage> {
                   ],
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Text(
                       "Previous Close",
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 55,
-                    ),
+                    // SizedBox(
+                    //   width: 55,
+                    // ),
                     Text(
                       "860.00",
                       style: TextStyle(
@@ -184,15 +198,17 @@ class _AXISSpageState extends State<AXISSpage> {
                   ],
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                   children: [
                     Text(
                       "Open",
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 142,
-                    ),
+                    // SizedBox(
+                    //   width: 142,
+                    // ),
                     Text(
                       "870.00",
                       style: TextStyle(

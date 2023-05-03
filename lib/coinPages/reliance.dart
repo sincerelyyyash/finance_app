@@ -40,17 +40,21 @@ class _RELIANCEpageState extends State<RELIANCEpage> {
         body: SingleChildScrollView(
             child: Column(children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(15, 10, 175, 8),
-            child: Column(
+           padding: const EdgeInsets.only(top: 20, left: 20),
+            child: Row(
               children: [
-                Text(
-                  "Reliance Industries",
-                  style: TextStyle(color: Colors.black, fontSize: 26),
-                ),
-                Text(
-                  "RELI",
-                  style: TextStyle(
-                      color: Colors.black.withOpacity(0.4), fontSize: 22),
+                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Reliance Industries",
+                      style: TextStyle(color: Colors.black, fontSize: 26),
+                    ),
+                    Text(
+                      "RELI",
+                      style: TextStyle(
+                          color: Colors.black.withOpacity(0.4), fontSize: 22),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -98,16 +102,16 @@ class _RELIANCEpageState extends State<RELIANCEpage> {
             padding: const EdgeInsets.all(25.0),
             child: Column(
               children: [
-                Row(
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "Day's Range",
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 72,
-                    ),
+                    // SizedBox(
+                    //   width: 72,
+                    // ),
                     Text(
                       "$minP - $maxP",
                       style: TextStyle(
@@ -115,16 +119,16 @@ class _RELIANCEpageState extends State<RELIANCEpage> {
                     ),
                   ],
                 ),
-                Row(
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "52 week Range",
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 46,
-                    ),
+                    // SizedBox(
+                    //   width: 46,
+                    // ),
                     Text(
                       "2,180 - 2,817.35",
                       style: TextStyle(
@@ -132,16 +136,16 @@ class _RELIANCEpageState extends State<RELIANCEpage> {
                     ),
                   ],
                 ),
-                Row(
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "Market Cap",
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 80,
-                    ),
+                    // SizedBox(
+                    //   width: 80,
+                    // ),
                     Text(
                       "15.51 T",
                       style: TextStyle(
@@ -149,16 +153,16 @@ class _RELIANCEpageState extends State<RELIANCEpage> {
                     ),
                   ],
                 ),
-                Row(
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "Volume",
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 120,
-                    ),
+                    // SizedBox(
+                    //   width: 120,
+                    // ),
                     Text(
                       "5,988,299",
                       style: TextStyle(
@@ -166,16 +170,16 @@ class _RELIANCEpageState extends State<RELIANCEpage> {
                     ),
                   ],
                 ),
-                Row(
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "Previous Close",
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 55,
-                    ),
+                    // SizedBox(
+                    //   width: 55,
+                    // ),
                     Text(
                       "2,420.50",
                       style: TextStyle(
@@ -183,16 +187,16 @@ class _RELIANCEpageState extends State<RELIANCEpage> {
                     ),
                   ],
                 ),
-                Row(
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "Open",
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 20),
                     ),
-                    SizedBox(
-                      width: 142,
-                    ),
+                    // SizedBox(
+                    //   width: 142,
+                    // ),
                     Text(
                       "2,436.20",
                       style: TextStyle(

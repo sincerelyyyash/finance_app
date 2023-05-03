@@ -43,18 +43,25 @@ class _ITCpageState extends State<ITCpage> {
             child: Column(children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 10, 350, 8),
-            child: Column(
-              children: [
-                Text(
-                  "ITC",
-                  style: TextStyle(color: Colors.black, fontSize: 26),
-                ),
-                Text(
-                  "ITC",
-                  style: TextStyle(
-                      color: Colors.black.withOpacity(0.4), fontSize: 22),
-                ),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20, left: 20),
+              child: Row(
+                children: [
+                  Column(crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "ITC",
+                        style: TextStyle(color: Colors.black, fontSize: 26),
+                      ),
+                      Text(
+                        "ITC",
+                        style: TextStyle(
+                            color: Colors.black.withOpacity(0.4), fontSize: 22),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(
