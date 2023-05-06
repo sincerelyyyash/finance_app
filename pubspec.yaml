@@ -50,6 +50,9 @@ dependencies:
   auto_size_text: ^3.0.0
   font_awesome_flutter: ^10.4.0
   draw_graph: ^1.0.0
+  cloud_firestore: ^4.6.0
+  syncfusion_flutter_charts: ^21.2.3
+
 
 dev_dependencies:
   flutter_test:

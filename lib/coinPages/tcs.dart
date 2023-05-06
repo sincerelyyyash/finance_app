@@ -9,14 +9,14 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:intl/intl.dart';
 
-class SBIpage extends StatefulWidget {
-  const SBIpage({super.key});
+class TCSpage extends StatefulWidget {
+  const TCSpage({super.key});
 
   @override
-  State<SBIpage> createState() => _SBIpageState();
+  State<TCSpage> createState() => _TCSpageState();
 }
 
-class _SBIpageState extends State<SBIpage> {
+class _TCSpageState extends State<TCSpage> {
   late int _itcPrice = 0;
   late int _minP;
   late int _maxP;
@@ -28,7 +28,7 @@ class _SBIpageState extends State<SBIpage> {
   late TrackballBehavior _trackballBehavior;
 
   Future<DocumentSnapshot<Map<String, dynamic>>> _getaxisDocument() async {
-    return FirebaseFirestore.instance.collection('prices').doc('sbi').get();
+    return FirebaseFirestore.instance.collection('prices').doc('tcs').get();
   }
 
   @override
@@ -75,7 +75,7 @@ class _SBIpageState extends State<SBIpage> {
   void _generateaxisPrice(int minRange, int maxRange) {
     FirebaseFirestore.instance
         .collection('prices')
-        .doc('sbi')
+        .doc('tcs')
         .update({'price': _itcPrice});
 
     _itcPrice = Random().nextInt(maxRange - minRange) + minRange;
@@ -84,7 +84,7 @@ class _SBIpageState extends State<SBIpage> {
         _itcPrice = Random().nextInt(maxRange - minRange) + minRange;
         FirebaseFirestore.instance
             .collection('prices')
-            .doc('sbi')
+            .doc('tcs')
             .update({'price': _itcPrice});
       });
     });
@@ -129,12 +129,12 @@ class _SBIpageState extends State<SBIpage> {
                                     child: CircleAvatar(
                                       radius: 15.0,
                                       backgroundImage: NetworkImage(
-                                          'https://images.news18.com/static-bengali/2019/03/213.jpg?im=Resize,width=904,aspect=fit,type=normal'),
+                                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxJfT7hvqjSTSUth09JobIkZP6lg-DXPNH4yqompblow2YDzLeNinVRuiG_tNB7kzkCp59xlY1WNc&usqp=CAU&ec=48665701'),
                                       backgroundColor: Colors.transparent,
                                     ),
                                   ),
                                   Text(
-                                    "State Bank of India",
+                                    "Tata Consultancy Services",
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 26),
                                   ),
@@ -142,7 +142,7 @@ class _SBIpageState extends State<SBIpage> {
                               ),
 
                               Text(
-                                "SBI",
+                                "TCS",
                                 style: TextStyle(
                                     color: Colors.black.withOpacity(0.4),
                                     fontSize: 22),
@@ -235,7 +235,7 @@ class _SBIpageState extends State<SBIpage> {
                   child: StreamBuilder<DocumentSnapshot>(
                     stream: FirebaseFirestore.instance
                         .collection('prices')
-                        .doc('sbi')
+                        .doc('tcs')
                         .snapshots(),
                     builder: (context, snapshot) {
                       if (!snapshot.hasData) {

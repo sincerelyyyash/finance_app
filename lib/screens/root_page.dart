@@ -21,7 +21,7 @@ class _rootpageState extends State<rootpage> {
   final List<Widget> _children = [
     HomeView(),
     Markets(),
-    LearnPage(),
+    PortfolioPage(),
     ProfilePage()
   ];
 
@@ -75,17 +75,6 @@ class PortfolioPage extends StatelessWidget {
     return Container(
       child: Center(
         child: Text('Portfolio Page'),
-      ),
-    );
-  }
-}
-
-class LearnPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('Learn Page'),
       ),
     );
   }

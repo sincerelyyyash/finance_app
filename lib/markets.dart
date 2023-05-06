@@ -1,7 +1,21 @@
+import 'package:finance_app/coinPages/adani.dart';
+import 'package:finance_app/coinPages/axisbank.dart';
+import 'package:finance_app/coinPages/hdfc.dart';
+import 'package:finance_app/coinPages/hdfcbank.dart';
+import 'package:finance_app/coinPages/icicibank.dart';
+import 'package:finance_app/coinPages/infosys.dart';
 import 'package:finance_app/coinPages/itc.dart';
+import 'package:finance_app/coinPages/kotak.dart';
+import 'package:finance_app/coinPages/reliance.dart';
+import 'package:finance_app/coinPages/sbi.dart';
+import 'package:finance_app/coinPages/tatamotors.dart';
+import 'package:finance_app/coinPages/tatasteel.dart';
+import 'package:finance_app/coinPages/tcs.dart';
+import 'package:finance_app/coinPages/techmahindra.dart';
 import 'package:flutter/material.dart';
 
 import 'coinPages/first.dart';
+import 'coinPages/maruti.dart';
 
 class Markets extends StatefulWidget {
   const Markets({super.key});
@@ -12,6 +26,7 @@ class Markets extends StatefulWidget {
 
 class _MarketsState extends State<Markets> {
   late int itcP = 0;
+  late int _hdfcPrice = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +136,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => HDFCpage()),
               );
             },
             child: Container(
@@ -186,7 +201,7 @@ class _MarketsState extends State<Markets> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'current_price',
+                                      _hdfcPrice.toString(),
                                       style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.bold),
@@ -210,7 +225,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => ICICIpage()),
               );
             },
             child: Container(
@@ -299,7 +314,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => HDFCOpage()),
               );
             },
             child: Container(
@@ -388,7 +403,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => RELIANCEpage()),
               );
             },
             child: Container(
@@ -477,7 +492,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => INFOSYSpage()),
               );
             },
             child: Container(
@@ -538,22 +553,11 @@ class _MarketsState extends State<Markets> {
                               child: Padding(
                                 padding:
                                     const EdgeInsets.only(right: 8.0, left: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'current_price',
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      "price_change_24h",
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
+                                child: Text(
+                                  'current_price',
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),
                                 ),
                               ),
                             ),
@@ -566,7 +570,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => AXISSpage()),
               );
             },
             child: Container(
@@ -655,7 +659,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => KOTAKpage()),
               );
             },
             child: Container(
@@ -744,7 +748,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => SBIpage()),
               );
             },
             child: Container(
@@ -833,7 +837,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => MARUTIpage()),
               );
             },
             child: Container(
@@ -922,7 +926,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => TCSpage()),
               );
             },
             child: Container(
@@ -1011,7 +1015,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => ADANIpage()),
               );
             },
             child: Container(
@@ -1100,7 +1104,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => TATASTEELpage()),
               );
             },
             child: Container(
@@ -1189,7 +1193,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => TECHMpage()),
               );
             },
             child: Container(
@@ -1278,7 +1282,7 @@ class _MarketsState extends State<Markets> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => FirstCoin()),
+                MaterialPageRoute(builder: (context) => TATAMOTORpage()),
               );
             },
             child: Container(

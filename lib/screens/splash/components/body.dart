@@ -4,8 +4,6 @@ import 'package:finance_app/screens/sign_in/SignInScreen.dart';
 import 'package:finance_app/screens/splash/components/splash_content.dart';
 import 'package:finance_app/size_config.dart';
 
-
-
 class Body extends StatefulWidget {
   const Body({super.key});
 
@@ -123,8 +121,8 @@ class _BodyState extends State<Body> {
                                       Center(
                                         child: Padding(
                                           padding: const EdgeInsets.fromLTRB(
-                                              110, 0, 40, 0),
-                                          child: Text("Login",
+                                              115, 0, 40, 0),
+                                          child: Text("Continue",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold,
