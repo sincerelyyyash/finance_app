@@ -5,9 +5,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_app/constraints.dart';
 import 'package:finance_app/models/stockprices.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:intl/intl.dart';
+
+import '../models/controller.dart';
 
 class AXISSpage extends StatefulWidget {
   const AXISSpage({super.key});
@@ -17,6 +20,7 @@ class AXISSpage extends StatefulWidget {
 }
 
 class _AXISSpageState extends State<AXISSpage> {
+    final AXISController axisController = Get.find();
   late int _itcPrice = 0;
   late int _minP;
   late int _maxP;
@@ -48,11 +52,11 @@ class _AXISSpageState extends State<AXISSpage> {
       _maxP = data['maxPriceday'] as int;
       _prevClose = data['prevClose'] as int;
       _currentPrice = data['price'] as int;
-      _generateaxisPrice(_minP, _maxP);
+ 
       // stockpriceColor(_currentPrice, _prevClose);
 
       Timer timer = Timer.periodic(Duration(seconds: 2), (timer) {
-        percentChange(_itcPrice, _prevClose);
+        percentChange(axisController.axisPrice, _prevClose);
       });
     });
   }
@@ -75,23 +79,7 @@ class _AXISSpageState extends State<AXISSpage> {
     }
   }
 
-  void _generateaxisPrice(int minRange, int maxRange) {
-    FirebaseFirestore.instance
-        .collection('prices')
-        .doc('axisbank')
-        .update({'price': _itcPrice});
-
-    _itcPrice = Random().nextInt(maxRange - minRange) + minRange;
-    Timer.periodic(Duration(seconds: 3), (timer) {
-      setState(() {
-        _itcPrice = Random().nextInt(maxRange - minRange) + minRange;
-        FirebaseFirestore.instance
-            .collection('prices')
-            .doc('axisbank')
-            .update({'price': _itcPrice});
-      });
-    });
-  }
+  
 
   @override
   Widget build(BuildContext context) {

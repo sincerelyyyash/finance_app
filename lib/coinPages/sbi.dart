@@ -5,9 +5,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_app/constraints.dart';
 import 'package:finance_app/models/stockprices.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:intl/intl.dart';
+
+import '../models/controller.dart';
 
 class SBIpage extends StatefulWidget {
   const SBIpage({super.key});
@@ -17,6 +20,7 @@ class SBIpage extends StatefulWidget {
 }
 
 class _SBIpageState extends State<SBIpage> {
+  final SBIController sbiController = Get.find();
   late int _itcPrice = 0;
   late int _minP;
   late int _maxP;
@@ -45,11 +49,11 @@ class _SBIpageState extends State<SBIpage> {
       _maxP = data['maxPriceday'] as int;
       _prevClose = data['prevClose'] as int;
       _currentPrice = data['price'] as int;
-      _generateaxisPrice(_minP, _maxP);
+
       // stockpriceColor(_currentPrice, _prevClose);
 
       Timer timer = Timer.periodic(Duration(seconds: 2), (timer) {
-        percentChange(_itcPrice, _prevClose);
+        percentChange(sbiController.sbiPrice, _prevClose);
       });
     });
   }
@@ -153,7 +157,7 @@ class _SBIpageState extends State<SBIpage> {
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 15, 0),
                                     child: Text(
-                                      '₹$_itcPrice',
+                                      '₹${sbiController.sbiPrice}',
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 45),
                                     ),

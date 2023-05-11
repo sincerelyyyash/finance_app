@@ -3,11 +3,16 @@ import 'dart:math';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_app/constraints.dart';
+import 'package:finance_app/flutterfire.dart';
 import 'package:finance_app/models/stockprices.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:intl/intl.dart';
+
+import '../models/controller.dart';
 
 class ITCpage extends StatefulWidget {
   const ITCpage({super.key});
@@ -17,6 +22,7 @@ class ITCpage extends StatefulWidget {
 }
 
 class _ITCpageState extends State<ITCpage> {
+  final PriceController priceController = Get.find();
   late int _itcPrice = 0;
   late int _minP;
   late int _maxP;
@@ -34,6 +40,7 @@ class _ITCpageState extends State<ITCpage> {
   @override
   void initState() {
     super.initState();
+
     _priceColor = Colors.black;
     percent = '0';
     _chartData = getChartData();
@@ -45,11 +52,10 @@ class _ITCpageState extends State<ITCpage> {
       _maxP = data['maxPriceday'] as int;
       _prevClose = data['prevClose'] as int;
       _currentPrice = data['price'] as int;
-      _generateaxisPrice(_minP, _maxP);
+      // _generateaxisPrice(_minP, _maxP);
       // stockpriceColor(_currentPrice, _prevClose);
-
-      Timer timer = Timer.periodic(Duration(seconds: 2), (timer) {
-        percentChange(_itcPrice, _prevClose);
+      Timer timer = Timer.periodic(Duration(seconds: 1), (timer) {
+        percentChange(priceController.itcPrice, _prevClose);
       });
     });
   }
@@ -72,23 +78,23 @@ class _ITCpageState extends State<ITCpage> {
     }
   }
 
-  void _generateaxisPrice(int minRange, int maxRange) {
-    FirebaseFirestore.instance
-        .collection('prices')
-        .doc('itc')
-        .update({'price': _itcPrice});
+  // void _generateaxisPrice(int minRange, int maxRange) {
+  //   FirebaseFirestore.instance
+  //       .collection('prices')
+  //       .doc('itc')
+  //       .update({'price': _itcPrice});
 
-    _itcPrice = Random().nextInt(maxRange - minRange) + minRange;
-    Timer.periodic(Duration(seconds: 3), (timer) {
-      setState(() {
-        _itcPrice = Random().nextInt(maxRange - minRange) + minRange;
-        FirebaseFirestore.instance
-            .collection('prices')
-            .doc('itc')
-            .update({'price': _itcPrice});
-      });
-    });
-  }
+  //   _itcPrice = Random().nextInt(maxRange - minRange) + minRange;
+  //   Timer.periodic(Duration(seconds: 3), (timer) {
+  //     setState(() {
+  //       _itcPrice = Random().nextInt(maxRange - minRange) + minRange;
+  //       FirebaseFirestore.instance
+  //           .collection('prices')
+  //           .doc('itc')
+  //           .update({'price': _itcPrice});
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -153,7 +159,8 @@ class _ITCpageState extends State<ITCpage> {
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 15, 0),
                                     child: Text(
-                                      '₹$_itcPrice',
+                                      // '₹$_itcPrice',
+                                      '${priceController.itcPrice}',
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 45),
                                     ),
@@ -400,7 +407,9 @@ class _ITCpageState extends State<ITCpage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             backgroundColor: Colors.green),
-                        onPressed: () async {},
+                        onPressed: () async {
+                          buyStock("ITC", _itcPrice.toDouble(), 4);
+                        },
                         child: Text(
                           "BUY",
                           style: TextStyle(fontSize: 20),

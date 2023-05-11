@@ -5,9 +5,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_app/constraints.dart';
 import 'package:finance_app/models/stockprices.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:intl/intl.dart';
+
+import '../models/controller.dart';
 
 class MARUTIpage extends StatefulWidget {
   const MARUTIpage({super.key});
@@ -17,6 +20,7 @@ class MARUTIpage extends StatefulWidget {
 }
 
 class _MARUTIpageState extends State<MARUTIpage> {
+  final MRTIController mrtiController = Get.find();
   late int _itcPrice = 0;
   late int _minP;
   late int _maxP;
@@ -28,10 +32,7 @@ class _MARUTIpageState extends State<MARUTIpage> {
   late TrackballBehavior _trackballBehavior;
 
   Future<DocumentSnapshot<Map<String, dynamic>>> _getaxisDocument() async {
-    return FirebaseFirestore.instance
-        .collection('prices')
-        .doc('maruti')
-        .get();
+    return FirebaseFirestore.instance.collection('prices').doc('maruti').get();
   }
 
   @override
@@ -48,11 +49,11 @@ class _MARUTIpageState extends State<MARUTIpage> {
       _maxP = data['maxPriceday'] as int;
       _prevClose = data['prevClose'] as int;
       _currentPrice = data['price'] as int;
-      _generateaxisPrice(_minP, _maxP);
+
       // stockpriceColor(_currentPrice, _prevClose);
 
       Timer timer = Timer.periodic(Duration(seconds: 2), (timer) {
-        percentChange(_itcPrice, _prevClose);
+        percentChange(mrtiController.mrtiPrice, _prevClose);
       });
     });
   }
@@ -156,7 +157,7 @@ class _MARUTIpageState extends State<MARUTIpage> {
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 15, 0),
                                     child: Text(
-                                      '₹$_itcPrice',
+                                      '₹${mrtiController.mrtiPrice}',
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 45),
                                     ),
