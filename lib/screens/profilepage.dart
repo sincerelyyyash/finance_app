@@ -22,58 +22,58 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  // final ImagePicker _picker = ImagePicker();
+  final ImagePicker _picker = ImagePicker();
 
-  // updateProfile() {
-  //   setState(() {
-  //     profilePic = (FirebaseAuth.instance.currentUser!.photoURL).toString();
-  //   });
-  // }
+  updateProfile() {
+    setState(() {
+      profilePic = (FirebaseAuth.instance.currentUser!.photoURL).toString();
+    });
+  }
 
-  // // Pick an image
+  // Pick an image
   String profilePic = (FirebaseAuth.instance.currentUser!.photoURL).toString();
-  // imagePick() async {
-  //   File photo;
-  //   // final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-  //   final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+  imagePick() async {
+    File photo;
+    // final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
-  //   if (pickedFile != null) {
-  //     photo = File(
-  //       pickedFile.path,
-  //     );
-  //     // return CircularProgressIndicator();
-  //     final ref = FirebaseStorage.instance
-  //         .ref('User')
-  //         .child((FirebaseAuth.instance.currentUser!.email).toString());
-  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //         backgroundColor: Colors.white,
-  //         content: Center(
-  //           child: CircularProgressIndicator(
-  //             color: Colors.black,
-  //           ),
-  //         )));
-  //     await ref.putFile(photo);
-  //     String photLink = await ref.getDownloadURL();
-  //     FirebaseAuth.instance.currentUser!.updatePhotoURL(photLink);
-  //     // await updateProfile();
-  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //         backgroundColor: Colors.white,
-  //         content: Center(
-  //           child: Container(
-  //             color: Colors.transparent,
-  //             // height: 500,
-  //             // width: 500,
-  //             child: Center(
-  //                 child: Text(
-  //               'Profile Picture Updated',
-  //               style: TextStyle(color: Colors.black),
-  //             )),
-  //           ),
-  //         )));
-  //   } else {
-  //     print('No image selected.');
-  //   }
-  // }
+    if (pickedFile != null) {
+      photo = File(
+        pickedFile.path,
+      );
+      // return CircularProgressIndicator();
+      final ref = FirebaseStorage.instance
+          .ref('User')
+          .child((FirebaseAuth.instance.currentUser!.email).toString());
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.white,
+          content: Center(
+            child: CircularProgressIndicator(
+              color: Colors.black,
+            ),
+          )));
+      await ref.putFile(photo);
+      String photLink = await ref.getDownloadURL();
+      FirebaseAuth.instance.currentUser!.updatePhotoURL(photLink);
+      // await updateProfile();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.white,
+          content: Center(
+            child: Container(
+              color: Colors.transparent,
+              // height: 500,
+              // width: 500,
+              child: Center(
+                  child: Text(
+                'Profile Picture Updated',
+                style: TextStyle(color: Colors.black),
+              )),
+            ),
+          )));
+    } else {
+      print('No image selected.');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -154,27 +154,27 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                           ),
-                          // GestureDetector(
-                          //   onTap: () async {
-                          //     await imagePick();
+                          GestureDetector(
+                            onTap: () async {
+                              await imagePick();
 
-                          //     setState(() {
-                          //       profilePic = (FirebaseAuth
-                          //               .instance.currentUser!.photoURL)
-                          //           .toString();
-                          //     });
-                          //     // Navigator.push(
-                          //     //     context,
-                          //     //     MaterialPageRoute(
-                          //     //         builder: (context) => HomeView()));
-                          //   },
-                          //   child: Text(
-                          //     'Change Profile Picture',
-                          //     style: GoogleFonts.poppins(
-                          //         fontSize: 17,
-                          //         color:Color(0xFF624aa1)),
-                          //   ),
-                          // )
+                              setState(() {
+                                profilePic = (FirebaseAuth
+                                        .instance.currentUser!.photoURL)
+                                    .toString();
+                              });
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => HomeView()));
+                            },
+                            child: Text(
+                              'Change Profile Picture',
+                              style: GoogleFonts.poppins(
+                                  fontSize: 17,
+                                  color:Color(0xFF624aa1)),
+                            ),
+                          )
                         ],
                       ),
                     ),
