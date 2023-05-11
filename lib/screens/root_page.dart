@@ -1,7 +1,6 @@
 import 'package:finance_app/constraints.dart';
 import 'package:finance_app/home_view.dart';
 import 'package:finance_app/markets.dart';
-import 'package:finance_app/screens/portfolio.dart';
 import 'package:finance_app/screens/profile.dart';
 import 'package:finance_app/screens/profilepage.dart';
 
@@ -20,10 +19,10 @@ class rootpage extends StatefulWidget {
 class _rootpageState extends State<rootpage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    const HomeView(),
-    const Markets(),
-    const PortfolioPage(),
-    const ProfilePage()
+    HomeView(),
+    Markets(),
+    PortfolioPage(),
+    ProfilePage()
   ];
 
   void onTabTapped(int index) {
@@ -65,6 +64,17 @@ class _rootpageState extends State<rootpage> {
         selectedItemColor: kPrimaryColor,
         unselectedItemColor: Colors.grey[500],
         backgroundColor: Colors.white,
+      ),
+    );
+  }
+}
+
+class PortfolioPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(
+        child: Text('Portfolio Page'),
       ),
     );
   }

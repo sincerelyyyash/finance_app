@@ -5,12 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_app/constraints.dart';
 import 'package:finance_app/models/stockprices.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:intl/intl.dart';
-
-import '../models/controller.dart';
 
 class ICICIpage extends StatefulWidget {
   const ICICIpage({super.key});
@@ -20,7 +17,6 @@ class ICICIpage extends StatefulWidget {
 }
 
 class _ICICIpageState extends State<ICICIpage> {
-  final ICICIController iciciController = Get.find();
   late int _iciciPrice = 0;
   late int _minPicici;
   late int _maxPicici;
@@ -52,11 +48,11 @@ class _ICICIpageState extends State<ICICIpage> {
       _maxPicici = data['maxPriceday'] as int;
       _prevClose = data['prevClose'] as int;
       _currentPrice = data['price'] as int;
-
+      _generateaxisPrice(_minPicici, _maxPicici);
       // stockpriceColor(_currentPrice, _prevClose);
 
       Timer timer = Timer.periodic(Duration(seconds: 2), (timer) {
-        percentChange(iciciController.iciciPrice, _prevClose);
+        percentChange(_iciciPrice, _prevClose);
       });
     });
   }
@@ -160,7 +156,7 @@ class _ICICIpageState extends State<ICICIpage> {
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 15, 0),
                                     child: Text(
-                                      '₹${iciciController.iciciPrice}',
+                                      '₹$_iciciPrice',
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 45),
                                     ),

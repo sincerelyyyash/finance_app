@@ -5,12 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_app/constraints.dart';
 import 'package:finance_app/models/stockprices.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:intl/intl.dart';
-
-import '../models/controller.dart';
 
 class ADANIpage extends StatefulWidget {
   const ADANIpage({super.key});
@@ -20,7 +17,6 @@ class ADANIpage extends StatefulWidget {
 }
 
 class _ADANIpageState extends State<ADANIpage> {
-  final ADANIController adaniController = Get.find();
   late int _itcPrice = 0;
   late int _minP;
   late int _maxP;
@@ -49,11 +45,11 @@ class _ADANIpageState extends State<ADANIpage> {
       _maxP = data['maxPriceday'] as int;
       _prevClose = data['prevClose'] as int;
       _currentPrice = data['price'] as int;
-
+      _generateaxisPrice(_minP, _maxP);
       // stockpriceColor(_currentPrice, _prevClose);
 
       Timer timer = Timer.periodic(Duration(seconds: 2), (timer) {
-        percentChange(adaniController.adaniPrice, _prevClose);
+        percentChange(_itcPrice, _prevClose);
       });
     });
   }
@@ -74,6 +70,24 @@ class _ADANIpageState extends State<ADANIpage> {
       percent = '-${cprice - pprice}';
       _priceColor = Colors.red;
     }
+  }
+
+  void _generateaxisPrice(int minRange, int maxRange) {
+    FirebaseFirestore.instance
+        .collection('prices')
+        .doc('adani')
+        .update({'price': _itcPrice});
+
+    _itcPrice = Random().nextInt(maxRange - minRange) + minRange;
+    Timer.periodic(Duration(seconds: 3), (timer) {
+      setState(() {
+        _itcPrice = Random().nextInt(maxRange - minRange) + minRange;
+        FirebaseFirestore.instance
+            .collection('prices')
+            .doc('adani')
+            .update({'price': _itcPrice});
+      });
+    });
   }
 
   @override
@@ -139,7 +153,7 @@ class _ADANIpageState extends State<ADANIpage> {
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 15, 0),
                                     child: Text(
-                                      '₹${adaniController.adaniPrice}',
+                                      '₹$_itcPrice',
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 45),
                                     ),

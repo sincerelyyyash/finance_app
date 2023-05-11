@@ -5,12 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_app/constraints.dart';
 import 'package:finance_app/models/stockprices.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:intl/intl.dart';
-
-import '../models/controller.dart';
 
 class HDFCpage extends StatefulWidget {
   const HDFCpage({super.key});
@@ -20,7 +17,6 @@ class HDFCpage extends StatefulWidget {
 }
 
 class _HDFCpageState extends State<HDFCpage> {
-  final HDFCController hdfcController = Get.find();
   late int _hdfcPrice = 0;
   late int _minP;
   late int _maxP;
@@ -52,11 +48,11 @@ class _HDFCpageState extends State<HDFCpage> {
       _maxP = data['maxPriceday'] as int;
       _prevClose = data['prevClose'] as int;
       _currentPrice = data['price'] as int;
-   
+      _generatehdfcPrice(_minP, _maxP);
       // stockpriceColor(_currentPrice, _prevClose);
 
       Timer timer = Timer.periodic(Duration(seconds: 2), (timer) {
-        percentChange(hdfcController.hdfcPrice, _prevClose);
+        percentChange(_hdfcPrice, _prevClose);
       });
     });
   }
@@ -79,7 +75,23 @@ class _HDFCpageState extends State<HDFCpage> {
     }
   }
 
-  
+  void _generatehdfcPrice(int minRange, int maxRange) {
+    FirebaseFirestore.instance
+        .collection('prices')
+        .doc('hdfcbank')
+        .update({'price': _hdfcPrice});
+
+    _hdfcPrice = Random().nextInt(maxRange - minRange) + minRange;
+    Timer.periodic(Duration(seconds: 3), (timer) {
+      setState(() {
+        _hdfcPrice = Random().nextInt(maxRange - minRange) + minRange;
+        FirebaseFirestore.instance
+            .collection('prices')
+            .doc('hdfcbank')
+            .update({'price': _hdfcPrice});
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +156,7 @@ class _HDFCpageState extends State<HDFCpage> {
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 15, 0),
                                     child: Text(
-                                      '₹${hdfcController.hdfcPrice}',
+                                      '₹$_hdfcPrice',
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 45),
                                     ),

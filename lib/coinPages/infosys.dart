@@ -5,12 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_app/constraints.dart';
 import 'package:finance_app/models/stockprices.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:intl/intl.dart';
-
-import '../models/controller.dart';
 
 class INFOSYSpage extends StatefulWidget {
   const INFOSYSpage({super.key});
@@ -20,7 +17,6 @@ class INFOSYSpage extends StatefulWidget {
 }
 
 class _INFOSYSpageState extends State<INFOSYSpage> {
-  final INFOController infoController = Get.find();
   late int _itcPrice = 0;
   late int _minP;
   late int _maxP;
@@ -49,11 +45,11 @@ class _INFOSYSpageState extends State<INFOSYSpage> {
       _maxP = data['maxPriceday'] as int;
       _prevClose = data['prevClose'] as int;
       _currentPrice = data['price'] as int;
-
+      _generateaxisPrice(_minP, _maxP);
       // stockpriceColor(_currentPrice, _prevClose);
 
       Timer timer = Timer.periodic(Duration(seconds: 2), (timer) {
-        percentChange(infoController.infoPrice, _prevClose);
+        percentChange(_itcPrice, _prevClose);
       });
     });
   }
@@ -157,7 +153,7 @@ class _INFOSYSpageState extends State<INFOSYSpage> {
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 0, 15, 0),
                                     child: Text(
-                                      '₹${infoController.infoPrice}',
+                                      '₹$_itcPrice',
                                       style: TextStyle(
                                           color: Colors.black, fontSize: 45),
                                     ),
