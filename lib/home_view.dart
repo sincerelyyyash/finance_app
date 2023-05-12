@@ -12,7 +12,9 @@ import 'package:finance_app/coinPages/kotak.dart';
 import 'package:finance_app/coinPages/reliance.dart';
 import 'package:finance_app/coinPages/sbi.dart';
 import 'package:finance_app/coinPages/tatasteel.dart';
+import 'package:finance_app/flutterfire.dart';
 import 'package:finance_app/models/api_methods.dart';
+import 'package:finance_app/screens/colorcode.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -115,6 +117,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     super.initState();
+    createWallet();
     _gethdfcDocument().then((snapshot) {
       final data = snapshot.data()!;
       _minPhdfc = data['minPriceday'] as int;
@@ -277,7 +280,7 @@ class _HomeViewState extends State<HomeView> {
     FirebaseFirestore.instance
         .collection('prices')
         .doc('sbi')
-        .update({'price': _ktkPrice});
+        .update({'price': _sbiPrice});
 
     _sbiPrice = Random().nextInt(maxRange - minRange) + minRange;
     Timer.periodic(Duration(seconds: 3), (timer) {
@@ -286,7 +289,7 @@ class _HomeViewState extends State<HomeView> {
         FirebaseFirestore.instance
             .collection('prices')
             .doc('sbi')
-            .update({'price': _ktkPrice});
+            .update({'price': _sbiPrice});
       });
     });
   }
@@ -312,748 +315,779 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
         body: SingleChildScrollView(
-          child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 10, 200, 8),
-              child: Text(
-                "Welcome Back!",
-                style: TextStyle(color: Colors.black, fontSize: 22),
-              ),
-            ),
-            Row(
+      child: Column(children: [
+        Stack(
+          children: [
+            Column(
               children: [
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
-                    height: 180,
-                    width: MediaQuery.of(context).size.width * 0.85,
-                    child: Card(
-                      elevation: 4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "My Wallet",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 13),
-                              ),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 100,
-                              ),
-                              Text(
-                                "Balance",
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 18),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width / 3,
-                                child: FittedBox(
-                                  child: Text(
-                                    "10,000",
-                                    style: TextStyle(
-                                        color: kPrimaryColor, fontSize: 30),
-                                  ),
-                                ),
-                              )
-                            ]),
-                      ),
+                Container(
+                  color: Color(0xFF624aa1),
+                  height: 150,
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 50,
+                        ),
+                      ],
                     ),
                   ),
-                )
-              ],
-            ),
-
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Top Stocks",
-                    style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: AppUIColor.lightbackgroundColor,
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(60),
+                          topLeft: Radius.circular(60))),
+                  height: 150,
+                  width: double.infinity,
                 ),
               ],
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HDFCpage()),
-                );
-              },
-              child: Container(
-                  child: SizedBox(
-                      height: 79,
-                      width: MediaQuery.of(context).size.width * 0.94,
+            Container(
+              height: 300,
+              width: double.infinity,
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 350,
                       child: Card(
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
                         color: Colors.white,
                         child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 15.0,
-                                          backgroundImage: NetworkImage(
-                                              'https://1000logos.net/wp-content/uploads/2021/06/HDFC-Bank-emblem.png'),
-                                          backgroundColor: Colors.transparent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 08,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'HDFC Bank',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'HDBK',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color:
-                                                Colors.black.withOpacity(0.5)),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              // SizedBox(
-                              //   width: 30,
-                              // ),
-                              Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 8.0, left: 10),
-                                    child: SizedBox(
-                                      height: 75,
-                                      width: 75,
-                                      child: Text(
-                                        _hdfcPrice.toString(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold,
-                                            color: kPrimaryColor),
-                                      ),
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // Text(
+                                //   "My Wallet",
+                                //   style: TextStyle(
+                                //       color: Colors.black, fontSize: 13),
+                                // ),
+                                // SizedBox(
+                                //   height:
+                                //       MediaQuery.of(context).size.height / 100,
+                                // ),
+                                // Text(
+                                //   "Cash Balance",
+                                //   style: TextStyle(
+                                //       color: Colors.black, fontSize: 18),
+                                // ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width / 3,
+                                  child: FittedBox(
+                                    child: Text(
+                                      "MockMarkets",
+                                      style: TextStyle(
+                                          color: kPrimaryColor, fontSize: 30),
                                     ),
-                                  ))
-                            ],
-                          ),
+                                  ),
+                                )
+                              ]),
                         ),
-                      ))),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ICICIpage()),
-                );
-              },
-              child: Container(
-                  child: SizedBox(
-                      height: 79,
-                      width: MediaQuery.of(context).size.width * 0.94,
-                      child: Card(
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 15.0,
-                                          backgroundImage: NetworkImage(
-                                              'https://i.pinimg.com/originals/ff/d5/31/ffd531a6a78464512a97848e14506738.png'),
-                                          backgroundColor: Colors.transparent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 08,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'ICICI Bank',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'ICBK',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color:
-                                                Colors.black.withOpacity(0.5)),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              // SizedBox(
-                              //   width: 30,
-                              // ),
-                              Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 8.0, left: 10),
-                                    child: SizedBox(
-                                      height: 75,
-                                      width: 75,
-                                      child: Text(
-                                        _iciciPrice.toString(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold,
-                                            color: kPrimaryColor),
-                                      ),
-                                    ),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      ))),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RELIANCEpage()),
-                );
-              },
-              child: Container(
-                  child: SizedBox(
-                      height: 79,
-                      width: MediaQuery.of(context).size.width * 0.94,
-                      child: Card(
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 15.0,
-                                          backgroundImage: NetworkImage(
-                                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQSX_QJb8ukAbl7fU1xJPxLznsalLwAuHw8JE4hcPzTw&usqp=CAU&ec=48665701'),
-                                          backgroundColor: Colors.transparent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 08,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Reliance',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'RELI',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color:
-                                                Colors.black.withOpacity(0.5)),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              // SizedBox(
-                              //   width: 30,
-                              // ),
-                              Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 8.0, left: 10),
-                                    child: SizedBox(
-                                      height: 75,
-                                      width: 75,
-                                      child: Text(
-                                        _relPrice.toString(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold,
-                                            color: kPrimaryColor),
-                                      ),
-                                    ),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      ))),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => INFOSYSpage()),
-                );
-              },
-              child: Container(
-                  child: SizedBox(
-                      height: 79,
-                      width: MediaQuery.of(context).size.width * 0.94,
-                      child: Card(
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 15.0,
-                                          backgroundImage: NetworkImage(
-                                              'https://static.vecteezy.com/system/resources/previews/020/190/476/original/infosys-logo-infosys-icon-free-free-vector.jpg'),
-                                          backgroundColor: Colors.transparent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 08,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Infosys',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'INFY',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color:
-                                                Colors.black.withOpacity(0.5)),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              // SizedBox(
-                              //   width: 30,
-                              // ),
-                              Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 8.0, left: 10),
-                                    child: SizedBox(
-                                      height: 75,
-                                      width: 75,
-                                      child: Text(
-                                        _infoPrice.toString(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold,
-                                            color: kPrimaryColor),
-                                      ),
-                                    ),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      ))),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AXISSpage()),
-                );
-              },
-              child: Container(
-                  child: SizedBox(
-                      height: 79,
-                      width: MediaQuery.of(context).size.width * 0.94,
-                      child: Card(
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 15.0,
-                                          backgroundImage: NetworkImage(
-                                              'https://companieslogo.com/img/orig/AXISBANK.BO-8f59e95b.png?t=1672905040'),
-                                          backgroundColor: Colors.transparent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 08,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Axis Bank',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'ACBK',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color:
-                                                Colors.black.withOpacity(0.5)),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              // SizedBox(
-                              //   width: 30,
-                              // ),
-                              Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 8.0, left: 10),
-                                    child: SizedBox(
-                                      height: 75,
-                                      width: 75,
-                                      child: Text(
-                                        _axisPrice.toString(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold,
-                                            color: kPrimaryColor),
-                                      ),
-                                    ),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      ))),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => KOTAKpage()),
-                );
-              },
-              child: Container(
-                  child: SizedBox(
-                      height: 79,
-                      width: MediaQuery.of(context).size.width * 0.94,
-                      child: Card(
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 15.0,
-                                          backgroundImage: NetworkImage(
-                                              'https://assets.stickpng.com/images/627ccde01b2e263b45696ab7.png'),
-                                          backgroundColor: Colors.transparent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 08,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Kotak Mahindra',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'KTKM',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color:
-                                                Colors.black.withOpacity(0.5)),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              // SizedBox(
-                              //   width: 30,
-                              // ),
-                              Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 8.0, left: 10),
-                                    child: SizedBox(
-                                      height: 75,
-                                      width: 75,
-                                      child: Text(
-                                        _ktkPrice.toString(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold,
-                                            color: kPrimaryColor),
-                                      ),
-                                    ),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      ))),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SBIpage()),
-                );
-              },
-              child: Container(
-                  child: SizedBox(
-                      height: 79,
-                      width: MediaQuery.of(context).size.width * 0.94,
-                      child: Card(
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 15.0,
-                                          backgroundImage: NetworkImage(
-                                              'https://images.news18.com/static-bengali/2019/03/213.jpg?im=Resize,width=904,aspect=fit,type=normal'),
-                                          backgroundColor: Colors.transparent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 08,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'SBI',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'SBI',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color:
-                                                Colors.black.withOpacity(0.5)),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              // SizedBox(
-                              //   width: 30,
-                              // ),
-                              Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 8.0, left: 10),
-                                    child: SizedBox(
-                                      height: 75,
-                                      width: 75,
-                                      child: Text(
-                                        _sbiPrice.toString(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold,
-                                            color: kPrimaryColor),
-                                      ),
-                                    ),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      ))),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => TATASTEELpage()),
-                );
-              },
-              child: Container(
-                  child: SizedBox(
-                      height: 79,
-                      width: MediaQuery.of(context).size.width * 0.94,
-                      child: Card(
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: CircleAvatar(
-                                          radius: 15.0,
-                                          backgroundImage: NetworkImage(
-                                              'https://w7.pngwing.com/pngs/614/66/png-transparent-tata-business-support-services-tata-consultancy-services-tata-group-consultant-business-blue-angle-text.png'),
-                                          backgroundColor: Colors.transparent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 08,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Tata Steel',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      Text(
-                                        'TISC',
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            color:
-                                                Colors.black.withOpacity(0.5)),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              // SizedBox(
-                              //   width: 30,
-                              // ),
-                              Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 8.0, left: 10),
-                                    child: SizedBox(
-                                      height: 75,
-                                      width: 75,
-                                      child: Text(
-                                        _tsPrice.toString(),
-                                        style: TextStyle(
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.bold,
-                                            color: kPrimaryColor),
-                                      ),
-                                    ),
-                                  ))
-                            ],
-                          ),
-                        ),
-                      ))),
-            ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+        // Padding(
+        //   padding: const EdgeInsets.fromLTRB(8, 10, 200, 8),
+        //   child: Text(
+        //     "Welcome Back!",
+        //     style: TextStyle(color: Colors.black, fontSize: 22),
+        //   ),
+        // ),
+        // Row(
+        //   children: [
+        //     SizedBox(
+        //       height: 20,
+        //     ),
+        //     Padding(
+        //       padding: const EdgeInsets.all(8.0),
+        //       child: SizedBox(
+        //         height: 180,
+        //         width: MediaQuery.of(context).size.width * 0.85,
+        //         child:
+        //       ),
+        //     )
+        //   ],
+        // ),
 
-            //
-          ]),
-        ));
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Top Stocks",
+                style: TextStyle(fontSize: 18, color: Colors.black),
+              ),
+            ),
+          ],
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HDFCpage()),
+            );
+          },
+          child: Container(
+              child: SizedBox(
+                  height: 79,
+                  width: MediaQuery.of(context).size.width * 0.94,
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: CircleAvatar(
+                                      radius: 15.0,
+                                      backgroundImage: NetworkImage(
+                                          'https://1000logos.net/wp-content/uploads/2021/06/HDFC-Bank-emblem.png'),
+                                      backgroundColor: Colors.transparent,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 08,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'HDFC Bank',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'HDBK',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black.withOpacity(0.5)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          // SizedBox(
+                          //   width: 30,
+                          // ),
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 8.0, left: 10),
+                                child: SizedBox(
+                                  height: 75,
+                                  width: 75,
+                                  child: Text(
+                                    _hdfcPrice.toString(),
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green),
+                                  ),
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ))),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ICICIpage()),
+            );
+          },
+          child: Container(
+              child: SizedBox(
+                  height: 79,
+                  width: MediaQuery.of(context).size.width * 0.94,
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: CircleAvatar(
+                                      radius: 15.0,
+                                      backgroundImage: NetworkImage(
+                                          'https://i.pinimg.com/originals/ff/d5/31/ffd531a6a78464512a97848e14506738.png'),
+                                      backgroundColor: Colors.transparent,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 08,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'ICICI Bank',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'ICBK',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black.withOpacity(0.5)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          // SizedBox(
+                          //   width: 30,
+                          // ),
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 8.0, left: 10),
+                                child: SizedBox(
+                                  height: 75,
+                                  width: 75,
+                                  child: Text(
+                                    _iciciPrice.toString(),
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green),
+                                  ),
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ))),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => RELIANCEpage()),
+            );
+          },
+          child: Container(
+              child: SizedBox(
+                  height: 79,
+                  width: MediaQuery.of(context).size.width * 0.94,
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: CircleAvatar(
+                                      radius: 15.0,
+                                      backgroundImage: NetworkImage(
+                                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQSX_QJb8ukAbl7fU1xJPxLznsalLwAuHw8JE4hcPzTw&usqp=CAU&ec=48665701'),
+                                      backgroundColor: Colors.transparent,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 08,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Reliance',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'RELI',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black.withOpacity(0.5)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          // SizedBox(
+                          //   width: 30,
+                          // ),
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 8.0, left: 10),
+                                child: SizedBox(
+                                  height: 75,
+                                  width: 75,
+                                  child: Text(
+                                    _relPrice.toString(),
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green),
+                                  ),
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ))),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => INFOSYSpage()),
+            );
+          },
+          child: Container(
+              child: SizedBox(
+                  height: 79,
+                  width: MediaQuery.of(context).size.width * 0.94,
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: CircleAvatar(
+                                      radius: 15.0,
+                                      backgroundImage: NetworkImage(
+                                          'https://static.vecteezy.com/system/resources/previews/020/190/476/original/infosys-logo-infosys-icon-free-free-vector.jpg'),
+                                      backgroundColor: Colors.transparent,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 08,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Infosys',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'INFY',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black.withOpacity(0.5)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          // SizedBox(
+                          //   width: 30,
+                          // ),
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 8.0, left: 10),
+                                child: SizedBox(
+                                  height: 75,
+                                  width: 75,
+                                  child: Text(
+                                    _infoPrice.toString(),
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green),
+                                  ),
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ))),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AXISSpage()),
+            );
+          },
+          child: Container(
+              child: SizedBox(
+                  height: 79,
+                  width: MediaQuery.of(context).size.width * 0.94,
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: CircleAvatar(
+                                      radius: 15.0,
+                                      backgroundImage: NetworkImage(
+                                          'https://companieslogo.com/img/orig/AXISBANK.BO-8f59e95b.png?t=1672905040'),
+                                      backgroundColor: Colors.transparent,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 08,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Axis Bank',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'ACBK',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black.withOpacity(0.5)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          // SizedBox(
+                          //   width: 30,
+                          // ),
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 8.0, left: 10),
+                                child: SizedBox(
+                                  height: 75,
+                                  width: 75,
+                                  child: Text(
+                                    _axisPrice.toString(),
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green),
+                                  ),
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ))),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => KOTAKpage()),
+            );
+          },
+          child: Container(
+              child: SizedBox(
+                  height: 79,
+                  width: MediaQuery.of(context).size.width * 0.94,
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: CircleAvatar(
+                                      radius: 15.0,
+                                      backgroundImage: NetworkImage(
+                                          'https://assets.stickpng.com/images/627ccde01b2e263b45696ab7.png'),
+                                      backgroundColor: Colors.transparent,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 08,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Kotak Mahindra',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'KTKM',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black.withOpacity(0.5)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          // SizedBox(
+                          //   width: 30,
+                          // ),
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 8.0, left: 10),
+                                child: SizedBox(
+                                  height: 75,
+                                  width: 75,
+                                  child: Text(
+                                    _ktkPrice.toString(),
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green),
+                                  ),
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ))),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SBIpage()),
+            );
+          },
+          child: Container(
+              child: SizedBox(
+                  height: 79,
+                  width: MediaQuery.of(context).size.width * 0.94,
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: CircleAvatar(
+                                      radius: 15.0,
+                                      backgroundImage: NetworkImage(
+                                          'https://images.news18.com/static-bengali/2019/03/213.jpg?im=Resize,width=904,aspect=fit,type=normal'),
+                                      backgroundColor: Colors.transparent,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 08,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'SBI',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'SBI',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black.withOpacity(0.5)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          // SizedBox(
+                          //   width: 30,
+                          // ),
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 8.0, left: 10),
+                                child: SizedBox(
+                                  height: 75,
+                                  width: 75,
+                                  child: Text(
+                                    _sbiPrice.toString(),
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green),
+                                  ),
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ))),
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => TATASTEELpage()),
+            );
+          },
+          child: Container(
+              child: SizedBox(
+                  height: 79,
+                  width: MediaQuery.of(context).size.width * 0.94,
+                  child: Card(
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: CircleAvatar(
+                                      radius: 15.0,
+                                      backgroundImage: NetworkImage(
+                                          'https://w7.pngwing.com/pngs/614/66/png-transparent-tata-business-support-services-tata-consultancy-services-tata-group-consultant-business-blue-angle-text.png'),
+                                      backgroundColor: Colors.transparent,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 08,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Tata Steel',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'TISC',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.black.withOpacity(0.5)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          // SizedBox(
+                          //   width: 30,
+                          // ),
+                          Align(
+                              alignment: Alignment.centerRight,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 8.0, left: 10),
+                                child: SizedBox(
+                                  height: 75,
+                                  width: 75,
+                                  child: Text(
+                                    _tsPrice.toString(),
+                                    style: TextStyle(
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green),
+                                  ),
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ))),
+        ),
+
+        //
+      ]),
+    ));
   }
 }
 

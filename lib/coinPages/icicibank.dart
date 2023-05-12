@@ -403,7 +403,9 @@ class _ICICIpageState extends State<ICICIpage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             backgroundColor: Colors.green),
-                        onPressed: () async {},
+                        onPressed: () async {
+                          buyBottomSheet(context);
+                        },
                         child: Text(
                           "BUY",
                           style: TextStyle(fontSize: 20),
@@ -422,7 +424,9 @@ class _ICICIpageState extends State<ICICIpage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             backgroundColor: Colors.red.withOpacity(0.9)),
-                        onPressed: () async {},
+                        onPressed: () async {
+                          sellBottomSheet(context);
+                        },
                         child: Text(
                           "SELL",
                           style: TextStyle(fontSize: 20),
@@ -763,4 +767,211 @@ class AxisChartData {
   final num? close;
   final num? low;
   final num? high;
+}
+
+void buyBottomSheet(context) {
+  int iciciquantity = 0;
+  final quantityController = TextEditingController();
+
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        return Container(
+            height: MediaQuery.of(context).size.height * .30,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        radius: 15.0,
+                        backgroundImage: NetworkImage(
+                            'https://i.pinimg.com/originals/ff/d5/31/ffd531a6a78464512a97848e14506738.png'),
+                        backgroundColor: Colors.transparent,
+                      ),
+                    ),
+                    Text(
+                      "Buy Icici Bank",
+                      style: TextStyle(color: Colors.black, fontSize: 26),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                  child: TextFormField(
+                    // Keyboard type declaration for @ button on keyboard.
+                    keyboardType: TextInputType.number,
+                    style: TextStyle(color: Colors.black),
+                    // Text Controller for email.
+                    controller: quantityController,
+                    decoration: InputDecoration(
+                        // Label on Email input Dialog Box
+                        labelText: "Enter Quantity",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        suffixIcon: Padding(
+                          padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
+                        ),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 42, vertical: 20),
+                        labelStyle: TextStyle(color: Colors.black),
+                        hintText: "Quantity",
+                        hintStyle: TextStyle(color: Colors.black),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(28),
+                            borderSide: BorderSide(color: kTextColor),
+                            gapPadding: 10),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(28),
+                            borderSide: BorderSide(color: kTextColor),
+                            gapPadding: 10)),
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  height: 60,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(10),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        backgroundColor: Colors.green.withOpacity(0.9)),
+                    onPressed: () async {
+                      iciciquantity = int.parse(quantityController.text);
+                      IciciQ.setInt(IciciQ.iciciquantity + iciciquantity);
+                      quantityController.clear();
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                    child: Text(
+                      "BUY",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                )
+              ],
+            ));
+      });
+}
+
+void sellBottomSheet(context) {
+  int iciciquantity = 0;
+  final quantityController = TextEditingController();
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        return Container(
+            height: MediaQuery.of(context).size.height * .30,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        radius: 15.0,
+                        backgroundImage: NetworkImage(
+                            'https://i.pinimg.com/originals/ff/d5/31/ffd531a6a78464512a97848e14506738.png'),
+                        backgroundColor: Colors.transparent,
+                      ),
+                    ),
+                    Text(
+                      "Sell Icici Bank",
+                      style: TextStyle(color: Colors.black, fontSize: 26),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                  child: TextFormField(
+                    // Keyboard type declaration for @ button on keyboard.
+                    keyboardType: TextInputType.number,
+                    style: TextStyle(color: Colors.black),
+                    // Text Controller for email.
+                    controller: quantityController,
+                    decoration: InputDecoration(
+                        // Label on Email input Dialog Box
+                        labelText: "Enter Quantity",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        suffixIcon: Padding(
+                          padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
+                        ),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 42, vertical: 20),
+                        labelStyle: TextStyle(color: Colors.black),
+                        hintText: "Quantity",
+                        hintStyle: TextStyle(color: Colors.black),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(28),
+                            borderSide: BorderSide(color: kTextColor),
+                            gapPadding: 10),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(28),
+                            borderSide: BorderSide(color: kTextColor),
+                            gapPadding: 10)),
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  height: 60,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(10),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        backgroundColor: Colors.red.withOpacity(0.9)),
+                    onPressed: () async {
+                      iciciquantity = int.parse(quantityController.text);
+                      if (IciciQ.getInt() >= iciciquantity) {
+                        IciciQ.setInt(IciciQ.iciciquantity - iciciquantity);
+                        quantityController.clear();
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      } else {
+                        quantityController.clear();
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(snackBarFail);
+                      }
+                    },
+                    child: Text(
+                      "SELL",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                )
+              ],
+            ));
+      });
+}
+
+final snackBar = SnackBar(
+  content: Text(
+    'Order Successful',
+    style: TextStyle(color: Colors.white),
+  ),
+);
+final snackBarFail = SnackBar(
+  content: Text(
+    'Order Failed',
+    style: TextStyle(color: Colors.white),
+  ),
+);
+
+class IciciQ {
+  static int iciciquantity = 0;
+
+  static void setInt(int newValue) {
+    iciciquantity = newValue;
+  }
+
+  static int getInt() {
+    return iciciquantity;
+  }
 }

@@ -400,7 +400,9 @@ class _ITCpageState extends State<ITCpage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             backgroundColor: Colors.green),
-                        onPressed: () async {},
+                        onPressed: () async {
+                          buyBottomSheet(context);
+                        },
                         child: Text(
                           "BUY",
                           style: TextStyle(fontSize: 20),
@@ -419,7 +421,9 @@ class _ITCpageState extends State<ITCpage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             backgroundColor: Colors.red.withOpacity(0.9)),
-                        onPressed: () async {},
+                        onPressed: () async {
+                          sellBottomSheet(context);
+                        },
                         child: Text(
                           "SELL",
                           style: TextStyle(fontSize: 20),
@@ -760,4 +764,211 @@ class AxisChartData {
   final num? close;
   final num? low;
   final num? high;
+}
+
+void buyBottomSheet(context) {
+  int itcquantity = 0;
+  final quantityController = TextEditingController();
+
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        return Container(
+            height: MediaQuery.of(context).size.height * .30,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        radius: 15.0,
+                        backgroundImage: NetworkImage(
+                            'https://static.theprint.in/wp-content/uploads/2023/01/ANI-20230127070054.jpg'),
+                        backgroundColor: Colors.transparent,
+                      ),
+                    ),
+                    Text(
+                      "Buy ITC",
+                      style: TextStyle(color: Colors.black, fontSize: 26),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                  child: TextFormField(
+                    // Keyboard type declaration for @ button on keyboard.
+                    keyboardType: TextInputType.number,
+                    style: TextStyle(color: Colors.black),
+                    // Text Controller for email.
+                    controller: quantityController,
+                    decoration: InputDecoration(
+                        // Label on Email input Dialog Box
+                        labelText: "Enter Quantity",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        suffixIcon: Padding(
+                          padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
+                        ),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 42, vertical: 20),
+                        labelStyle: TextStyle(color: Colors.black),
+                        hintText: "Quantity",
+                        hintStyle: TextStyle(color: Colors.black),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(28),
+                            borderSide: BorderSide(color: kTextColor),
+                            gapPadding: 10),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(28),
+                            borderSide: BorderSide(color: kTextColor),
+                            gapPadding: 10)),
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  height: 60,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(10),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        backgroundColor: Colors.green.withOpacity(0.9)),
+                    onPressed: () async {
+                      itcquantity = int.parse(quantityController.text);
+                      ItcQ.setInt(ItcQ.itcquantity + itcquantity);
+                      quantityController.clear();
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                    child: Text(
+                      "BUY",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                )
+              ],
+            ));
+      });
+}
+
+void sellBottomSheet(context) {
+  int itcquantity = 0;
+  final quantityController = TextEditingController();
+  showModalBottomSheet(
+      context: context,
+      builder: (BuildContext bc) {
+        return Container(
+            height: MediaQuery.of(context).size.height * .30,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CircleAvatar(
+                        radius: 15.0,
+                        backgroundImage: NetworkImage(
+                            'https://static.theprint.in/wp-content/uploads/2023/01/ANI-20230127070054.jpg'),
+                        backgroundColor: Colors.transparent,
+                      ),
+                    ),
+                    Text(
+                      "Sell ITC",
+                      style: TextStyle(color: Colors.black, fontSize: 26),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                  child: TextFormField(
+                    // Keyboard type declaration for @ button on keyboard.
+                    keyboardType: TextInputType.number,
+                    style: TextStyle(color: Colors.black),
+                    // Text Controller for email.
+                    controller: quantityController,
+                    decoration: InputDecoration(
+                        // Label on Email input Dialog Box
+                        labelText: "Enter Quantity",
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        suffixIcon: Padding(
+                          padding: EdgeInsets.fromLTRB(0, 20, 20, 20),
+                        ),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 42, vertical: 20),
+                        labelStyle: TextStyle(color: Colors.black),
+                        hintText: "Quantity",
+                        hintStyle: TextStyle(color: Colors.black),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(28),
+                            borderSide: BorderSide(color: kTextColor),
+                            gapPadding: 10),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(28),
+                            borderSide: BorderSide(color: kTextColor),
+                            gapPadding: 10)),
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  height: 60,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(10),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                        backgroundColor: Colors.red.withOpacity(0.9)),
+                    onPressed: () async {
+                      itcquantity = int.parse(quantityController.text);
+                      if (ItcQ.getInt() >= itcquantity) {
+                        ItcQ.setInt(ItcQ.itcquantity - itcquantity);
+                        quantityController.clear();
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      } else {
+                        quantityController.clear();
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(snackBarFail);
+                      }
+                    },
+                    child: Text(
+                      "SELL",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                )
+              ],
+            ));
+      });
+}
+
+final snackBar = SnackBar(
+  content: Text(
+    'Order Successful',
+    style: TextStyle(color: Colors.white),
+  ),
+);
+final snackBarFail = SnackBar(
+  content: Text(
+    'Order Failed',
+    style: TextStyle(color: Colors.white),
+  ),
+);
+
+class ItcQ {
+  static int itcquantity = 0;
+
+  static void setInt(int newValue) {
+    itcquantity = newValue;
+  }
+
+  static int getInt() {
+    return itcquantity;
+  }
 }
