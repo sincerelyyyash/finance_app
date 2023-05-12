@@ -301,37 +301,37 @@ class _ProfilePageState extends State<ProfilePage> {
                   SizedBox(
                     height: 31,
                   ),
-                  Container(
-                      width: MediaQuery.of(context).size.width * 0.88,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(FontAwesomeIcons.user),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                "Reset Wallet",
-                                style: GoogleFonts.poppins(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 22,
-                                    color: AppUIColor.lightTextColor),
-                              ),
-                            ],
-                          ),
-                          Icon(
-                            FontAwesomeIcons.arrowRight,
-                              color: kPrimaryColor,
+                  // Container(
+                  //     width: MediaQuery.of(context).size.width * 0.88,
+                  //     child: Row(
+                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //       children: [
+                  //         Row(
+                  //           children: [
+                  //             Icon(FontAwesomeIcons.user),
+                  //             SizedBox(
+                  //               width: 8,
+                  //             ),
+                  //             Text(
+                  //               "Reset Wallet",
+                  //               style: GoogleFonts.poppins(
+                  //                   fontWeight: FontWeight.w500,
+                  //                   fontSize: 22,
+                  //                   color: AppUIColor.lightTextColor),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         Icon(
+                  //           FontAwesomeIcons.arrowRight,
+                  //             color: kPrimaryColor,
 
-                            size: 22,
-                          )
-                        ],
-                      )),
-                  SizedBox(
-                    height: 31,
-                  ),
+                  //           size: 22,
+                  //         )
+                  //       ],
+                  //     )),
+                  // SizedBox(
+                  //   height: 31,
+                  // ),
                   GestureDetector(
                     onTap: () async {
                       await FirebaseAuth.instance.signOut();

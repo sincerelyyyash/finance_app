@@ -2,9 +2,23 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:finance_app/coinPages/adani.dart';
+import 'package:finance_app/coinPages/axisbank.dart';
 import 'package:finance_app/coinPages/hdfcbank.dart';
 import 'package:flutter/material.dart';
 
+import '../coinPages/hdfc.dart';
+import '../coinPages/icicibank.dart';
+import '../coinPages/infosys.dart';
+import '../coinPages/itc.dart';
+import '../coinPages/kotak.dart';
+import '../coinPages/maruti.dart';
+import '../coinPages/reliance.dart';
+import '../coinPages/sbi.dart';
+import '../coinPages/tatamotors.dart';
+import '../coinPages/tatasteel.dart';
+import '../coinPages/tcs.dart';
+import '../coinPages/techmahindra.dart';
 import '../constraints.dart';
 import 'colorcode.dart';
 
@@ -24,7 +38,6 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
   late int _hdfcPrice = 0;
   late int _minPhdfc;
   late int _maxPhdfc;
-  late int hdfcp = _hdfcPrice * HdfcQ.getInt();
 
   late int _iciciPrice = 0;
   late int _minPicici;
@@ -657,7 +670,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.only(right: 8.0, left: 20),
+                                const EdgeInsets.only(right: 8.0, left: 65),
                             child: SizedBox(
                               height: 45,
                               width: 75,
@@ -695,8 +708,1112 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                   ),
                 ),
               )),
-
-          // Text(HdfcQ.getInt().toString())
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Adani Enterprises',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'ADEL',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 20),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                AdaniQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_adaniPrice * AdaniQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Axis Bank',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'AXBK',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 40),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                AxisQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_axisPrice * AxisQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'HDFC',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'HDFC',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 60),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                HdfcoQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_hdfcoPrice * HdfcoQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Icici Bank',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'ICBK',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 20),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                IciciQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_iciciPrice * IciciQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Infosys',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'INFY',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 20),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                InfoQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_infoPrice * InfoQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'ITC',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'ITC',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 20),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                ItcQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_itcPrice * ItcQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Kotak Bank',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'KTKM',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 20),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                KtkQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_ktkPrice * KtkQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Maruti Suzuki',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'MRTI',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 20),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                MrtiQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_mrtiPrice * MrtiQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Reliance',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'RELI',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 20),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                RelQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_relPrice * RelQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'SBI',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'SBI',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 20),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                SbiQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_sbiPrice * SbiQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Tata Motors',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'TAMO',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 20),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                TtmQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_ttmPrice * TtmQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Tata Steel',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'TISC',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 20),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                TsQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_tsPrice * TsQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'TCS',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'TCS',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 20),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                TcsQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_tcsPrice * TcsQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
+          SizedBox(
+              height: 79,
+              width: MediaQuery.of(context).size.width * 0.94,
+              child: Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SizedBox(
+                            width: 08,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Tech Mahindra',
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'TEML',
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.black.withOpacity(0.5)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // SizedBox(
+                      //   width: 30,
+                      // ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 20),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                TecmQ.getInt().toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(right: 8.0, left: 10),
+                            child: SizedBox(
+                              height: 45,
+                              width: 75,
+                              child: Text(
+                                (_tecmPrice * TecmQ.getInt()).toString(),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.green),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )),
         ]),
       ),
     );
