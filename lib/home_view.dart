@@ -337,24 +337,27 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: AppUIColor.lightbackgroundColor,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(60),
-                          topLeft: Radius.circular(60))),
-                  height: 150,
-                  width: double.infinity,
-                ),
+                // Container(
+                //   decoration: BoxDecoration(
+                //       color: AppUIColor.lightbackgroundColor,
+                //       borderRadius: BorderRadius.only(
+                //           topRight: Radius.circular(60),
+                //           topLeft: Radius.circular(60))),
+                //   height: 150,
+                //   width: double.infinity,
+                // ),
               ],
             ),
             Container(
-              height: 300,
+              height: 180,
               width: double.infinity,
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    SizedBox(
+                      height: 100,
+                    ),
                     SizedBox(
                       width: 350,
                       child: Card(

@@ -563,24 +563,27 @@ class _MarketsState extends State<Markets> {
                   ),
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                    color: AppUIColor.lightbackgroundColor,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(60),
-                        topLeft: Radius.circular(60))),
-                height: 150,
-                width: double.infinity,
-              ),
+              // Container(
+              //   decoration: BoxDecoration(
+              //       color: AppUIColor.lightbackgroundColor,
+              //       borderRadius: BorderRadius.only(
+              //           topRight: Radius.circular(60),
+              //           topLeft: Radius.circular(60))),
+              //   height: 150,
+              //   width: double.infinity,
+              // ),
             ],
           ),
           Container(
-            height: 300,
+            height: 180,
             width: double.infinity,
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 100,
+                  ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.85,
                     child: Card(
@@ -594,10 +597,10 @@ class _MarketsState extends State<Markets> {
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height / 100,
-                              ),
+                              // SizedBox(
+                              //   height:
+                              //       MediaQuery.of(context).size.height / 100,
+                              // ),
                               Container(
                                 width: MediaQuery.of(context).size.width / 3,
                                 child: FittedBox(

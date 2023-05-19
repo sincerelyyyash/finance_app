@@ -557,30 +557,33 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: 50,
+                            height: 0,
                           ),
                         ],
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: AppUIColor.lightbackgroundColor,
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(60),
-                            topLeft: Radius.circular(60))),
-                    height: 150,
-                    width: double.infinity,
-                  ),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //       color: AppUIColor.lightbackgroundColor,
+                  //       borderRadius: BorderRadius.only(
+                  //           topRight: Radius.circular(60),
+                  //           topLeft: Radius.circular(60))),
+                  //   height: 100,
+                  //   width: double.infinity,
+                  // ),
                 ],
               ),
               Container(
-                height: 300,
+                height: 220,
                 width: double.infinity,
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(
+                        height: 100,
+                      ),
                       SizedBox(
                         width: 350,
                         child: Card(
@@ -599,10 +602,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 13),
                                   ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height /
-                                        100,
-                                  ),
+                                  // SizedBox(height: 20),
                                   // Text(
                                   //   "Portfolio",
                                   //   style: TextStyle(
@@ -828,7 +828,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.only(right: 8.0, left: 40),
+                                const EdgeInsets.only(right: 8.0, left: 80),
                             child: SizedBox(
                               height: 45,
                               width: 75,
@@ -907,7 +907,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.only(right: 8.0, left: 60),
+                                const EdgeInsets.only(right: 8.0, left: 110),
                             child: SizedBox(
                               height: 45,
                               width: 75,
@@ -986,7 +986,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.only(right: 8.0, left: 20),
+                                const EdgeInsets.only(right: 8.0, left: 80),
                             child: SizedBox(
                               height: 45,
                               width: 75,
@@ -1065,7 +1065,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.only(right: 8.0, left: 20),
+                                const EdgeInsets.only(right: 8.0, left: 100),
                             child: SizedBox(
                               height: 45,
                               width: 75,
@@ -1144,7 +1144,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.only(right: 8.0, left: 20),
+                                const EdgeInsets.only(right: 8.0, left: 130),
                             child: SizedBox(
                               height: 45,
                               width: 75,
@@ -1223,7 +1223,7 @@ class _PortfolioScreenState extends State<PortfolioScreen> {
                         children: [
                           Padding(
                             padding:
-                                const EdgeInsets.only(right: 8.0, left: 20),
+                                const EdgeInsets.only(right: 8.0, left: 70),
                             child: SizedBox(
                               height: 45,
                               width: 75,
